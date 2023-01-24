@@ -4,7 +4,8 @@ import { Container } from 'react-bootstrap'
 import { NewNote } from './NewNote'
 import { useEffect, useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
-import { V4 as uuidV4} from 'uuid'
+import { v4 as uuidV4} from 'uuid'
+import { NoteList } from './NoteList'
 
 
 export type Note = {
@@ -12,7 +13,7 @@ export type Note = {
 } & NoteData
 
 export type RawNote = {
-  id: string,
+  id: string
 } & RawNoteData
 
 export type RawNoteData = {
@@ -50,11 +51,24 @@ function App() {
     })
   }
 
+  function addTag(tag: Tag){
+    setTags(prev => [...prev, tag])
+  }
+
   return (
     <Container className='my-4'>
       <Routes>
-        <Route path='/' element={<div>Home</div>}></Route>
-        <Route path='/new' element={<NewNote />}>New</Route>
+        <Route path='/' element={<NoteList availableTags={tags} />} />
+        <Route 
+          path='/new' 
+          element={
+            <NewNote 
+              onSubmit={onCreateNote} 
+              onAddTag={addTag} 
+              availableTags={tags}
+            />
+            }>New
+        </Route>
         <Route path='/*' element={<Navigate to='/' />}>New</Route>
         <Route path='/:id'>
           <Route index element={<h1>Show</h1>}/>
