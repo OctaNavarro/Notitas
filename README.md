@@ -1,2 +1,2 @@
 # Notitas
- Note taking app using TypeScript
+ Markdown note taking app using TypeScript
