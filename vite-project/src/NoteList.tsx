@@ -48,7 +48,7 @@ export function NoteList({ availableTags, notes, onUpdateTag, onDeleteTag }: Not
   return( 
   <>
     <Row className="align-items-center mb-4">
-      <Col><h1>Notes</h1></Col>
+      <Col><h1>Notitas</h1></Col>
       <Col xs='auto'>
         <Stack gap={2} direction='horizontal'>
           <Link to='/new'>
